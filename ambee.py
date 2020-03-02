@@ -113,13 +113,13 @@ class domain_fronting(threading.Thread):
             self.proxy_host_port = random.choice(self.frontend_domains).split(':')
             self.proxy_host = self.proxy_host_port[0]
             self.proxy_port = self.proxy_host_port[1] if len(self.proxy_host_port) >= 2 and self.proxy_host_port[1] else '443'
-            self.log('CONNECTING !!! [Y1]'.format(self.proxy_host, self.proxy_port))
+            self.log('CONNECTING !!!! [Y1]'.format(self.proxy_host, self.proxy_port))
             self.socket_tunnel.connect((str(self.proxy_host), int(self.proxy_port)))
             self.socket_client.sendall(b'HTTP/1.1 200 OK\r\n\r\n')
             self.handler(self.socket_tunnel, self.socket_client, self.buffer_size)
             self.socket_client.close()
             self.socket_tunnel.close()
-            self.log('CONNECTED !!! [Y1]'.format(self.proxy_host, self.proxy_port), color='[G1]')
+            self.log('CONNECTED !!!! [Y1]'.format(self.proxy_host, self.proxy_port), color='[G1]')
         except OSError:
             self.log('Connection error', color='[R1]')
         except TimeoutError:
